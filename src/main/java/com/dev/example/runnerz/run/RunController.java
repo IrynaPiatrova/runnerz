@@ -36,7 +36,7 @@ public class RunController {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     void createRun(@Valid @RequestBody Run run) {
-        runRepository.createRun(run);
+        runRepository.create(run);
     }
 
     @PutMapping("/{id}")
