@@ -2,9 +2,7 @@ package com.dev.example.runnerz.run;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +17,7 @@ public class RunController {
         this.runRepository = runRepository;
     }
 
-    @GetMapping("")
+    @GetMapping({"", "/"})
     List<Run> findAll() {
         return runRepository.findAll();
     }
@@ -44,12 +42,12 @@ public class RunController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void updateRun(@Valid @RequestBody Run run, @PathVariable Integer id) {
-        runRepository.updateRun(run, id);
+        runRepository.update(run, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteRun(@PathVariable Integer id) {
-        runRepository.deleteRun(id);
+        runRepository.delete(id);
     }
 }
